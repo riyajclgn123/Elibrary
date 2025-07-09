@@ -288,7 +288,7 @@ function CreatePost(props) {
             </div>
             <br />
             <br />
-            <button className="btn btn-primary" type="submit">
+            <button className="btn btn-primary" type="submit" >
               {isEditing ? "Save" : "Post"}
             </button>
           </div>

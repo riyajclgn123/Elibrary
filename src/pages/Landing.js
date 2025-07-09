@@ -43,8 +43,8 @@ function Landing({ isAuth }) {
 
       <Row>
         <Col md={8} className="about-section">
-          <h2>About the Site</h2>
-          <p>
+          <h2 className="title">About the Site</h2>
+          <p className="description">
             This platform provides a unique educational environment where
             students can log in using Google Sign-In to access posts shared by
             their teachers. Teachers have the capability to create a variety of
@@ -62,8 +62,8 @@ function Landing({ isAuth }) {
             a robust and secure tool for modern education.
           </p>
         </Col>
-        <Col>
-  <div className="notice-container">
+        <Col md={4} className="notice-section">
+  <card className="notice-container">
     <h2 className="notice">Important Notice</h2>
     <p>
       <a
@@ -74,7 +74,7 @@ function Landing({ isAuth }) {
         Click here to learn More.
       </a>
     </p>
-  </div>
+  </card>
 </Col>
 
       </Row>

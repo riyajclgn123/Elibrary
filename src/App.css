@@ -263,6 +263,9 @@ textarea {
 .post-title {
   font-size: 24px;
   margin-bottom: 16px;
+  display:flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .form-group {
@@ -349,20 +352,24 @@ textarea {
   /* background-color: #007bff; */
   /* color: #fff; */
   padding: 8px 16px;
-  border: none;
+  border: green 1px solid;
   border-radius: 4px;
   cursor: pointer;
   font-size: 16px;
   transition: transform 0.2s;
+  
 }
 
 .btn-primary {
-  background-color: #007bff;
+  background-color: #06af1d;
   transform: scale(1.2);
+  
+  color: #fff;
+  
 }
 
 .btn-primary:hover {
-  background-color: #0062cc;
+  background-color: #0c6217;
 }
 
 .delete-button:hover {
