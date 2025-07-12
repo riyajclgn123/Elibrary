@@ -1,0 +1,7 @@
+[
+  {
+    "origin": ["http://localhost:3000", "https://elib-production070825-a8b0d.web.app/"],
+    "method": ["GET", "HEAD", "OPTIONS"],
+    "maxAgeSeconds": 3600
+  }
+]

@@ -27,7 +27,7 @@ const updatePostViews = async (url) => {
                 const postRef = doc.ref;
                 const postData = doc.data();
                 
-                if (!postData.viewed_user.includes(user)) {
+                  if (!postData.viewed_user || !Array.isArray(postData.viewed_user) || !postData.viewed_user.includes(user)) {
                     await updateDoc(postRef, {
                         viewed_count: increment(1),
                         viewed_user: arrayUnion(user)

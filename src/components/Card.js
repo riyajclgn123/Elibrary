@@ -7,12 +7,8 @@ import Countdown from "react-countdown";
 import { Document, Page, pdfjs } from "react-pdf";
 import "./Card.css";
 
-// import Logger from './Logger';
 
-pdfjs.GlobalWorkerOptions.workerSrc = new URL(
-  "pdfjs-dist/build/pdf.worker.min.js",
-  import.meta.url
-).toString();
+pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.min.js`;
 
 export default function Card({
   postLists,
@@ -32,12 +28,31 @@ export default function Card({
 
   const uid = localStorage.getItem("uid") || "";
 
-  const openPost = (postId, postUrl) => {
-    setPdfUrl(postUrl);
-    setShowPdfModal(true);
+  const openPost = async (postId, postUrl) => {
+  setPdfUrl(postUrl);
+  setShowPdfModal(true);
 
-    //todo: Need to insert the count and user here
-  };
+  try {
+    const uid = localStorage.getItem("uid");
+
+    if (!uid) return;
+
+    // 1. Log the view under a subcollection `views` of the post
+    const viewRef = doc(db, "posts", postId, "views", uid);
+    await setDoc(viewRef, {
+      viewedAt: serverTimestamp()
+    });
+
+    // 2. Increment a view count on the post (optional)
+    const postRef = doc(db, "posts", postId);
+    await updateDoc(postRef, {
+      viewCount: increment(1)
+    });
+
+  } catch (error) {
+    console.error("Error logging view in Firestore:", error);
+  }
+};
 
   const onDocumentLoadSuccess = ({ numPages }) => {
     setNumPages(numPages);
@@ -174,15 +189,14 @@ export default function Card({
                       ) => (
                         <a
                           key={key}
-                          href={"_blank"}
+                          href={decoratedHref}
                           target="_blank"
                           rel="noopener noreferrer"
                         >
+                          {decoratedText}
                         </a>
                       )}
-                    >
-                      {post.postText}
-                    </Linkify>
+                    ></Linkify>
                   </div>
                   <center>
                     <button
@@ -320,16 +334,18 @@ export default function Card({
         <Modal.Body>
           <Document
             file={{
-              url: pdfUrl
+              url: pdfUrl,
             }}
-
             onLoadSuccess={onDocumentLoadSuccess}
           >
-
-{[...Array(numPages).keys()].map((pageIndex) => (
-    <Page key={`page_${pageIndex + 1}`} pageNumber={pageIndex + 1} renderAnnotationLayer={false} renderTextLayer={false} />
-  ))}
-            
+            {[...Array(numPages).keys()].map((pageIndex) => (
+              <Page
+                key={`page_${pageIndex + 1}`}
+                pageNumber={pageIndex + 1}
+                renderAnnotationLayer={false}
+                renderTextLayer={false}
+              />
+            ))}
           </Document>
         </Modal.Body>
         <Modal.Footer>
