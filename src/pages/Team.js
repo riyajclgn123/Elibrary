@@ -10,6 +10,7 @@ import Aone from "../assests/aone.png";
 import Aakash from "../assests/aakash.png";
 import Satyam from "../assests/satyam.png";
 import Anish from "../assests/anish2.png";
+import Riyaj from "../assests/Riyaj1.png";
 
 function TeamCard({ name, image, description }) {
   const [text, setText] = useState(false);
@@ -79,6 +80,13 @@ const Team = () => {
             name="Aone Shrestha"
             description="I am a senior in computer science at Southeastern Louisiana University, where I am pursuing a scientific concentration that covers topics such as data structures, algorithms, operating systems, and software engineering. I have completed several courses and projects that have enhanced my knowledge and proficiency in various programming languages and technologies, such as Java, JavaScript, TypeScript, React, ASP.NET Core, Blazor, Entity Framework, and Git. I am eager to continue learning and growing in my field, and to explore the possibilities and challenges of AI and IoT."
             image={Aone}
+          />
+        </Col>
+         <Col>
+          <TeamCard
+            name="Riyaj Chaulagain"
+            description="As a sophomore Computer Science major at Southeastern Louisiana University, I’ve built a strong technical foundation through coursework and hands-on projects in full-stack development, system design, and software engineering. I’ve worked with technologies like React, ASP.NET Core, Blazor, and SQL Server to develop interactive web apps, including a smart fitness tracker. My work blends clean architecture with user-centered design, and I’m now diving deeper into AI and IoT to push the boundaries of what I can build and solve."
+            image={Riyaj}
           />
         </Col>
         <Col>
