@@ -3,15 +3,14 @@ import "react-toastify/dist/ReactToastify.css";
 import { toast } from "react-toastify";
 
 import { Carousel, Row, Col } from "react-bootstrap";
-import Student from "../assests/library.jpg";
 import Student1 from "../assests/mobile.jpg";
 import Student2 from "../assests/study.jpg";
 import Library from "../assests/SchoolLibrary.jpg";
-import "./Landing.css"; // Import custom styles
-
+import "./Landing.css";
 
 function Landing({ isAuth }) {
   const [notices, setNotices] = useState();
+
   useEffect(() => {
     if (!isAuth) {
       toast.warning("Logged out Successfully!!!", {
@@ -31,52 +30,51 @@ function Landing({ isAuth }) {
     <div className="landing-container">
       <Carousel>
         <Carousel.Item>
-          <img src={Library} alt="Student" />
+          <img src={Library} alt="Library" />
         </Carousel.Item>
         <Carousel.Item>
-          <img src={Student1} alt="Student1" />
+          <img src={Student1} alt="Mobile Learning" />
         </Carousel.Item>
         <Carousel.Item>
-          <img src={Student2} alt="Student2" />
+          <img src={Student2} alt="Studying" />
         </Carousel.Item>
       </Carousel>
 
-      <Row>
-        <Col md={8} className="about-section">
-          <h2 className="title">About the Site</h2>
-          <p className="description">
-            This platform provides a unique educational environment where
-            students can log in using Google Sign-In to access posts shared by
-            their teachers. Teachers have the capability to create a variety of
-            content, including posts, announcements, and homework assignments.
-            They can also share e-books with their students, cleverly concealing
-            the source URL of the document. A standout feature of this platform
-            is its ability to allow only one student at a time to access a
-            book, effectively disabling content download or offline viewing.
-            This ensures the exclusive availability of resources and promotes
-            disciplined usage. Another distinctive feature is the ability for
-            teachers to embed Google Docs or online documents directly into
-            their posts. This allows students to access the content without
-            seeing the source link, thereby enhancing privacy and preventing
-            unauthorized sharing. These features collectively make this platform
-            a robust and secure tool for modern education.
-          </p>
+      <Row className="display-row justify-content-center align-items-center">
+        <Col md={7} className="mb-4">
+          <div className="gradient-card">
+            <div className="card-content">
+              <h2 className="title">About the Site</h2>
+              <p>
+                This platform provides a unique educational environment where
+                students can log in using Google Sign-In to access posts shared
+                by their teachers. Teachers can create a variety of content,
+                including announcements, assignments, and e-books, with source
+                links hidden for privacy. A special feature ensures that only
+                one student can view a book at a time, disabling downloads for
+                focused learning. Teachers can also embed online docs directly
+                into posts, enhancing security and preventing sharing.
+              </p>
+            </div>
+          </div>
         </Col>
-        <Col md={4} className="notice-section">
-  <card className="notice-container">
-    <h2 className="notice">Important Notice</h2>
-    <p>
-      <a
-        href="https://docs.google.com/document/d/e/2PACX-1vSr6lJ6Wtg6anxw_hDzDTegfDdPnrQ7fIBQftZlNVMYkojhXKGvqgHiTtAKB3SFk9Snx0Af8hOtYeyB/pub?urp=gmail_link"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        Click here to learn More.
-      </a>
-    </p>
-  </card>
-</Col>
 
+        <Col md={4} className="notice-section mb-5">
+          <div className="notice-container gradient-card">
+            <div className="card-content">
+              <h2 className="notice">Important Notice</h2>
+              <p>
+                <a
+                  href="https://docs.google.com/document/d/e/2PACX-1vSr6lJ6Wtg6anxw_hDzDTegfDdPnrQ7fIBQftZlNVMYkojhXKGvqgHiTtAKB3SFk9Snx0Af8hOtYeyB/pub?urp=gmail_link"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Click here to learn more.
+                </a>
+              </p>
+            </div>
+          </div>
+        </Col>
       </Row>
     </div>
   );

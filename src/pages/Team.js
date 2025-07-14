@@ -23,7 +23,7 @@ function TeamCard({ name, image, description }) {
     <Card
       style={{
         width: "18rem",
-        marginLeft: "10px",
+        marginLeft: "30px",
         marginTop: "20px",
         marginBottom: "10px",
       }}
